@@ -2,7 +2,7 @@
 
 > **htl-parser** is a PEG.js grammar and parser for Adobe's HTML Template Language (HTL), formerly *Sightly*, based on version 1.3.1 of the [HTL Specification](https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/master/SPECIFICATION.md).
 
-**htl-parser** only tokenises the supplied HTL expression. To pass a model to the expression and generate and output, see [htl-compiler](#).
+🌱 **This is a beta release. Use at your own risk.**
 
 ## Usage
 
