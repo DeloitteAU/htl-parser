@@ -6,8 +6,14 @@
  * Licensed under the BSD 3-Clause license.
  */
 
+Grammar
+    = e:Expression PlainText* { return e; }
+
+PlainText
+    = chars:$(!'${'.)+ { return chars; }
+
 Expression
-    = ExpressionStart expression:Node? options:(OptionsStart OptionList)? ExpressionEnd {
+    = ExpressionStart expression:Node? options:(OptionsSeparator OptionList)? ExpressionEnd {
         return ['expression', {
             expression,
             options: (options ? options[1]: []),
@@ -15,17 +21,17 @@ Expression
         }];
     }
 
-OptionsStart     = w* '@' w*
-ExpressionStart  = '${' w*
-ExpressionEnd    = w* '}'
-CommaSeperated   = w* ',' w*
-ArrayStart       = '[' w*
 ArrayEnd         = w* ']'
-ParenthesesStart = '(' w*
-ParenthesesEnd   = w* ')'
-TernaryIf        = w '?' w
-TernaryElse      = w ':' w
+ArrayStart       = '[' w*
+CommaSeperated   = w* ',' w*
+ExpressionEnd    = w* '}'
+ExpressionStart  = '${' w*
 Not              = '!' w*
+OptionsSeparator = w* '@' w*
+ParenthesesEnd   = w* ')'
+ParenthesesStart = '(' w*
+TernaryElse      = w ':' w
+TernaryIf        = w '?' w
 
 OptionList 'option list'
    = a:Option b:(CommaSeperated Option)* { return [a].concat(b.map(x => x[1])); }
