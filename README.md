@@ -8,13 +8,13 @@
 
 ### Grammar
 
-The grammar is contained in [`src/htl.pegjs`](#).
+The grammar is contained in [`src/htl.pegjs`](#)
 
 ### Generating a parser
 
 This repository comes with a pre-compiled parser. However, you can re-generate the parser with:
 
-```
+```bash
 npm run generate
 ```
 
@@ -22,7 +22,7 @@ The parser will be output to `dist/parser.js`.
 
 ### Parsing a statement
 
-```
+```js
 const HTLParser = require('htl-parser');
 const tokens = HTLParser.parse('${ a || b }');
 ```
@@ -30,7 +30,7 @@ const tokens = HTLParser.parse('${ a || b }');
 **Notes:**
 
 - The parser only processes expressions between `${` and `}`. Parsing will fail if there are any characters before or after the expression.
-- The parser attempts to process HTL in their corresponding JavaScript type. For example, `bool` become a Boolean, `int` and `float` types become a Number, etc.
+- The parser attempts to process HTL in their corresponding JavaScript type. For example, `int` and `float` types become a Number, etc.
 - Superfluous whitespace characters are not tokenised.
 - The parser returns an AST-like result. This is not guaranteed to be a proper abstract syntax tree.
 
@@ -109,11 +109,11 @@ Represents a comparison or logical operation. i.e `${ a || b }` or `${ a < 5 }`
 
 **object**:
 
-- `comparison` Comparator, as listed below
-- `left` Token; before comparator
-- `right` Token; after comparator
+- `operator` As listed below
+- `left` Token; before operand
+- `right` Token; after operand
 
-| Comparator | Expression |
+| Operator | Expression |
 | ----------- | ---- |
 | `and`       | `&&` |
 | `or`        | `||` |
@@ -135,33 +135,42 @@ Represents a variable (or identifier) in the model. **String** will be an JavaSc
 
 #### `["integer", `*Number*`]`
 
-Represents an integer. **Number** will be a JavaScript Number, parsed using `parseInt(x, 10);`.
+Represents an integer.
+
+**Number** will be a JavaScript Number, parsed using `parseInt(x, 10);`.
 
 #### `["float", `*Number*`]`
 
-Represents an floating-point number. **Number** will be a JavaScript Number, parsed using `parseFloat(x);`.
+Represents an floating-point number.
+
+**Number** will be a JavaScript Number, parsed using `parseFloat(x);`.
 
 #### `["boolean", `*Boolean*`]`
 
-Represents an boolean value. **Boolean** will be a JavaScript Boolean, equalling `true` when the value is `"true"`, or `false` otherwise.
+Represents an boolean value.
+
+**Boolean** will be a JavaScript Boolean, equalling `true` when the value is `"true"`, or `false` otherwise.
 
 #### `["string", `*String*`]`
 
-Represents a string. **String** will be an JavaScript String.
+Represents a string.
 
-## Specification changes
+**String** will be an JavaScript String.
+
+## Specification notes
 
 Ambiguities in the specifications grammar have been resolved as below:
 
-- The definition for `atom` omits an array type. However, an array type is present throughout the examples. Therefore, support for arrays have been added to the grammar as any comma-separated values.
-- `propertyAccess` definition includes `'.' Field`, which allows the erroneous `${ a.'key' }`. This has been changed to `'.' Variable` to avoid this case.
-- `operator` has been extended to include `==`, `!=`, `<`, `<=`, and `>`, which are present in the examples but not definition.
-- `optionValues` and `valueList` definitions have been replaced with a `node`, allowing operators to be used.
-- The definition for `id` has been renamed to `variable` for sake of clarity.
+- The definition for `atom` omits an array type. However, an array type is present throughout the examples. This array deviates from the HTL 1.3 spec by including array support.
+- `propertyAccess` definition includes `'.' Field`, which allows the erroneous `${ a.'key' }`. This has been changed to `'.' Variable` to avoid this case ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/57))
+- `operator` has been extended to include `== != < <= >`, which are present in the examples but not definition ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/58))
+- `optionValues` and `valueList` definitions have been replaced with a `node`, allowing operators to be used
+- Negative `integers` and `floats` are not allowed by the specification ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/44))
+- The definition for `id` has been renamed to `variable` for sake of clarity
 
 ## Limitations
 
-The grammar does not correctly handle concurrent `&&` or `||` without parenthesis. For example:
+This implementation does not correctly parse concurrent `&&` or `||` without parentheses. For example:
 
 ```
 ${ a || b || c }
@@ -172,6 +181,14 @@ Must be written as:
 ```
 ${ (a || b) || c }
 ```
+
+HTL 1.3 treats both `&&` and `||` with the same precedence:
+
+```
+true || false && false
+```
+
+Evaluates as `false` in HTL 1.3, and `true` is most other programming languages. For this reason, it is recommended to surround each operation with parentheses.
 
 ## License
 
