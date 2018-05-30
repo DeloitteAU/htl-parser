@@ -21,17 +21,17 @@ Expression
         }];
     }
 
-ArrayEnd         = w* ']'
 ArrayStart       = '[' w*
+ArrayEnd         = w* ']'
 CommaSeperated   = w* ',' w*
-ExpressionEnd    = w* '}'
 ExpressionStart  = '${' w*
+ExpressionEnd    = w* '}'
 Not              = '!' w*
 OptionsSeparator = w* '@' w*
-ParenthesesEnd   = w* ')'
 ParenthesesStart = '(' w*
-TernaryElse      = w ':' w
+ParenthesesEnd   = w* ')'
 TernaryIf        = w '?' w
+TernaryElse      = w ':' w
 
 OptionList 'option list'
    = a:Option b:(CommaSeperated Option)* { return [a].concat(b.map(x => x[1])); }
