@@ -15,17 +15,17 @@ Expression
         }];
     }
 
-OptionsStart = w* '@' w*
-ExpressionStart = '${' w*
-ExpressionEnd = w* '}'
-CommaSeperated = w* ',' w*
-ArrayStart = '[' w*
-ArrayEnd = w* ']'
+OptionsStart     = w* '@' w*
+ExpressionStart  = '${' w*
+ExpressionEnd    = w* '}'
+CommaSeperated   = w* ',' w*
+ArrayStart       = '[' w*
+ArrayEnd         = w* ']'
 ParenthesesStart = '(' w*
-ParenthesesEnd = w* ')'
-TernaryIf = w '?' w
-TernaryElse = w ':' w
-Not = '!' w*
+ParenthesesEnd   = w* ')'
+TernaryIf        = w '?' w
+TernaryElse      = w ':' w
+Not              = '!' w*
 
 OptionList 'option list'
    = a:Option b:(CommaSeperated Option)* { return [a].concat(b.map(x => x[1])); }
@@ -71,7 +71,7 @@ Property
     }
 
 PropertyAccess
-    = accessors:('.' Field)+ { return accessors.map(x => x[1]); }
+    = accessors:('.' Field)+                { return accessors.map(x => x[1]); }
     / accessors:(ArrayStart Node ArrayEnd)+ { return accessors.map(x => x[1]); }
 
 Field
@@ -106,8 +106,8 @@ Variable "variable"
 
 Float 'float'
     = f: $([0-9]+ '.' [0-9]* exponent?) { return ['float', parseFloat(f)]; }
-    / f: $('.' [0-9]+ exponent?) { return ['float', parseFloat(f)]; }
-    / f: $([0-9]+ exponent) { return ['float', parseFloat(f)]; }
+    / f: $('.' [0-9]+ exponent?)        { return ['float', parseFloat(f)]; }
+    / f: $([0-9]+ exponent)             { return ['float', parseFloat(f)]; }
 
 exponent 'exponent'
     = $([eE][+-]?[0-9]+)
