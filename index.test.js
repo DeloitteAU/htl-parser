@@ -9,15 +9,84 @@
 
 const { parser } = require('./index');
 
+const PassTests = [
+	['${}', 'Empty expression'],
+	['${}}}', 'Match first closing bracket'],
+	'${ a }',
+	'${ a && !(b || c) }',
+	'${ !a }',
+	'${ a && b }',
+	'${ a || b }',
+	'${ a ? b : c }',
+	'${ a < b }',
+	'${ a <= b }',
+	'${ a == b }',
+	'${ a != b }',
+	'${ a > b }',
+	'${ a >= b }',
+	'${ a ? b : c }',
+	'${ 123 }',
+	'${ 1.23 }',
+	'${ 1e5 }',
+	'${ 1e+5 }',
+	'${ 1e-5 }',
+	'${ false }',
+	'${ true }',
+	'${ "string" }',
+	'${ "\\"string" }',
+	'${ "\'string\'" }',
+	'${ \'string\' }',
+	'${ \'\\\'string\' }',
+	'${ \'"string"\' }',
+	'${ a @ b }',
+	'${ a @ b=c }',
+	'${ a @ b=true }',
+	'${ a @ b=42 }',
+	'${ a @ b=\'string\' }',
+	'${ a @ b="string" }',
+	'${ a @ b=[c, \'string\'] }',
+	'${ a @ b=(c && d) || !e }',
+	'${ a @ b, c=d, e=\'string\', f=[g, \'string\'] }',
+	'${ @ b, c, d }',
+	'${ @ b, c, d }',
+	'${ a.b.c }',
+	'${ a[1][2][3] }',
+	'${ [1, 2, 3, true, \'string\'] }',
+	'${ [[[[[[[5]]]]]]] }',
+	'${ jcr:title }',
+	'${ a[b] }',
+];
+
+const FailTests = [
+	'zzzz',
+	'${$}',
+	'${{}',
+	'${{}}',
+];
+
 describe('Smoke tests', () => {
-	test('Parses valid expression', () => {
-		const tokens = parser.parse('${ a || b }');
-		expect(tokens).toEqual(expect.anything());
+	describe('Parses valid expression', () => {
+		PassTests.forEach((x) => {
+			const expression = (typeof x === 'string') ? x : x[0];
+			const name = (typeof x === 'string') ? x : x[1];
+
+			test(name, () => {
+				const tokens = parser.parse(expression);
+				expect(tokens).toEqual(expect.anything());
+			});
+		});
 	});
 
-	test('Throws on invalid expression', () => {
-		expect(() => {
-			parser.parse('invalid');
-		}).toThrow();
+	describe('Throws on invalid expression', () => {
+		FailTests.forEach((x) => {
+			const expression = (typeof x === 'string') ? x : x[0];
+			const name = (typeof x === 'string') ? x : x[1];
+
+			test(name, () => {
+				expect(() => {
+					parser.parse(expression);
+				}).toThrow();
+			});
+		});
 	});
 });
