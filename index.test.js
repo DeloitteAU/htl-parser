@@ -64,6 +64,22 @@ const FailTests = [
 	'${{}}',
 ];
 
+describe('Grammar', () => {
+	test('Compiles', () => {
+		const fs = require('fs');
+		const path = require('path');
+		const peg = require('pegjs');
+
+		const grammar = fs.readFileSync(path.join('src', 'htl.pegjs'), 'utf8');
+		const parserSource = peg.generate(grammar, {
+			cache: false,
+			format: 'commonjs',
+			optimize: 'speed',
+			output: 'source'
+		});
+	});
+});
+
 describe('Smoke tests', () => {
 	describe('Parses valid expression', () => {
 		PassTests.forEach((x) => {
