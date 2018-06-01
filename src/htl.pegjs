@@ -55,10 +55,10 @@ BinaryOperator
 Operator "operator"
     = '&&' { return 'and'; }
     / '||' { return 'or'; }
+    / '>=' { return 'gte'; }
     / '<=' { return 'lte'; }
     / '<'  { return 'lt'; }
     / '>'  { return 'gt'; }
-    / '>=' { return 'gte'; }
     / '==' { return 'equal'; }
     / '!=' { return 'not_equal'; }
 
