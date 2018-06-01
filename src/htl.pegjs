@@ -10,7 +10,7 @@ Grammar
     = e:Expression PlainText* { return e; }
 
 PlainText
-    = chars:$(!'${'.)+ { return chars; }
+    = chars:$(.)+ { return chars; }
 
 Expression
     = ExpressionStart expression:Node? options:(OptionsSeparator OptionList)? ExpressionEnd {
@@ -58,6 +58,7 @@ Operator "operator"
     / '<=' { return 'lte'; }
     / '<'  { return 'lt'; }
     / '>'  { return 'gt'; }
+    / '>=' { return 'gte'; }
     / '==' { return 'equal'; }
     / '!=' { return 'not_equal'; }
 
