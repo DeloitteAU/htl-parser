@@ -1,16 +1,18 @@
 # htl-parser
 
-> **htl-parser** is a PEG.js grammar and parser for Adobe's HTML Template Language (HTL), formerly *Sightly*, based on version 1.3.1 of the [HTL Specification](https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/master/SPECIFICATION.md).
+[![npm version](https://badge.fury.io/js/htl-parser.svg)](https://badge.fury.io/js/htl-parser) [![Build Status](https://travis-ci.org/lachlanmcdonald/htl-parser.svg?branch=master)](https://travis-ci.org/lachlanmcdonald/htl-parser)
 
+> **htl-parser** is a PEG.js grammar and parser for Adobe's HTML Template Language (HTL), formerly *Sightly*, based on version 1.3.1 of the [HTL Specification](https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/master/SPECIFICATION.md).
+ 
 🌱 **This is a beta release. Use at your own risk.**
 
 ## Usage
 
-### Grammar
+#### Grammar
 
-The grammar is contained in [`src/htl.pegjs`](#)
+The grammar is contained in `src/htl.pegjs`
 
-### Generating a parser
+#### Generating a parser
 
 This repository comes with a pre-compiled parser. However, you can re-generate the parser with:
 
@@ -20,7 +22,7 @@ npm run generate
 
 The parser will be output to `dist/parser.js`.
 
-### Parsing a statement
+#### Parsing a statement
 
 ```js
 const HTLParser = require('htl-parser');
@@ -120,6 +122,7 @@ Represents a comparison or logical operation. i.e `${ a || b }` or `${ a < 5 }`
 | `lte`       | `<=` |
 | `lt`        | `<`  |
 | `gt`        | `>`  |
+| `gte`       | `>=` |
 | `equal`     | `==` |
 | `not_equal` | `!=` |
 
@@ -189,6 +192,14 @@ true || false && false
 ```
 
 Evaluates as `false` in HTL 1.3, and `true` is most other programming languages. For this reason, it is recommended to surround each operation with parentheses.
+
+## Tests
+
+Tests can be run with:
+
+```bash
+npm run test
+```
 
 ## License
 
