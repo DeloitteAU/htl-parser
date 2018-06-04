@@ -115,16 +115,16 @@ Represents a comparison or logical operation. i.e `${ a || b }` or `${ a < 5 }`
 - `left` Token; before operand
 - `right` Token; after operand
 
-| Operator | Expression |
-| ----------- | ---- |
-| `and`       | `&&` |
-| `or`        | `||` |
-| `lte`       | `<=` |
-| `lt`        | `<`  |
-| `gt`        | `>`  |
-| `gte`       | `>=` |
-| `equal`     | `==` |
-| `not_equal` | `!=` |
+| Operator    | Expression                    |
+| ----------- | ----------------------------- |
+| `and`       | <code>&amp;&amp;</code>       |
+| `or`        | <code>&#x007C;&#x007C;</code> |
+| `lte`       | <code>&lt;=</code>            |
+| `lt`        | <code>&lt;</code>             |
+| `gt`        | <code>&gt;</code>             |
+| `gte`       | <code>&gt;=</code>            |
+| `equal`     | <code>==</code>               |
+| `not_equal` | <code>!=</code>               |
 
 ### Type tokens
 
@@ -164,12 +164,14 @@ Represents a string.
 
 Ambiguities in the specifications grammar have been resolved as below:
 
-- The definition for `atom` omits an array type. However, an array type is present throughout the examples. This array deviates from the HTL 1.3 spec by including array support.
-- `propertyAccess` definition includes `'.' Field`, which allows the erroneous `${ a.'key' }`. This has been changed to `'.' Variable` to avoid this case ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/57))
-- `operator` has been extended to include `== != < <= >`, which are present in the examples but not definition ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/58))
-- `optionValues` and `valueList` definitions have been replaced with a `node`, allowing operators to be used
-- Negative `integers` and `floats` are not allowed by the specification ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/44))
-- The definition for `id` has been renamed to `variable` for sake of clarity
+- Added a declarative array type, as it is present throughout the documentation, but not the grammar. ([See issue #60](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/60))
+- Updated the `propertyAccess` to prevent the erroneous expression `${ a."string" }` from validating. ([see issue #57](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/57))
+- Updated grammar to include missing `== != < <= > >=` operators. ([See issue #58](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/58))
+- Updated grammar to allow complex nodes in option defitions.
+
+Also of note:
+
+- Negative `integers` and `floats` are not allowed by the specification. ([See issue #44](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/44))
 
 ## Limitations
 
