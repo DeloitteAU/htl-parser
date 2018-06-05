@@ -1637,9 +1637,9 @@ function peg$parse(input, options) {
     var s0, s1;
 
     peg$silentFails++;
-    s0 = peg$parseAtom();
+    s0 = peg$parseNode();
     if (s0 === peg$FAILED) {
-      s0 = peg$parseNode();
+      s0 = peg$parseAtom();
     }
     peg$silentFails--;
     if (s0 === peg$FAILED) {

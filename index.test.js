@@ -51,10 +51,10 @@ const PassTests = [
 	'${ @ b, c, d }',
 	'${ a.b.c }',
 	'${ a[1][2][3] }',
-	'${ [1, 2, 3, true, \'string\'] }',
+	'${ [1, 2, 3, true, \'string\', !a, b.c[d]] }',
 	'${ [[[[[[[5]]]]]]] }',
 	'${ jcr:title }',
-	'${ a[b] }',
+	'${ a[b] }'
 ];
 
 const FailTests = [
@@ -65,7 +65,7 @@ const FailTests = [
 	'${ -1 }',
 	'${ -1.0 }',
 	'${ -.15 }',
-	'${ a."string" }',
+	'${ a."string" }'
 ];
 
 describe('Grammar', () => {
