@@ -101,8 +101,8 @@ Array "array"
     }
 
 ArrayItem "array item"
-    = Atom
-    / Node
+    = Node
+    / Atom
 
 Boolean "boolean"
     = b: 'true'  { return ['boolean', b === 'true']; }
