@@ -1,6 +1,6 @@
 {
   "name": "htl-parser",
-  "version": "0.1.0-beta.2",
+  "version": "0.1.0-beta.3",
   "description": "PEG.js grammar and parser for Adobe's HTML Template Language (HTL)",
   "main": "index.js",
   "homepage": "https://github.com/lachlanmcdonald/htl-parser/",
