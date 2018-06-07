@@ -66,8 +66,8 @@ Factor
     = not:Not? term:Term { return ['factor', {negative: !!not, term}] }
 
 Term
-    = ParenthesesStart e:Node ParenthesesEnd { return ['expression', e]; }
-    / Property
+    = ParenthesesStart e:Node ParenthesesEnd { return e; }
+    / e:Property { return e; }
 
 Property
     = atom:Atom accessors:PropertyAccess* {
