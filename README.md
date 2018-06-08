@@ -164,11 +164,11 @@ Represents a string.
 
 Ambiguities in the specifications grammar have been resolved as below:
 
-- The definition for `atom` omits an array type. However, an array type is present throughout the examples. This array deviates from the HTL 1.3 spec by including array support.
+- The definition for `atom` omits an array type. However, an array type is present throughout the examples. This implementation deviates from the HTL 1.3 spec by including array support.
 - `propertyAccess` definition includes `'.' Field`, which allows the erroneous `${ a.'key' }`. This has been changed to `'.' Variable` to avoid this case ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/57))
 - `operator` has been extended to include `== != < <= >`, which are present in the examples but not definition ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/58))
 - `optionValues` and `valueList` definitions have been replaced with a `node`, allowing operators to be used
-- Negative `integers` and `floats` are not allowed by the specification ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/44))
+- Negative `integers` and `floats` are not allowed by the specification. However, negative numbers are present throughout the examples. This implementation deviates from the HTL 1.3 spec by including negative number. ([see issue](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/44))
 - The definition for `id` has been renamed to `variable` for sake of clarity
 
 ## Limitations

@@ -112,15 +112,15 @@ Variable "variable"
     = v: $([a-zA-Z_][a-zA-Z0-9_:]*) { return ['variable', v]; }
 
 Float 'float'
-    = f: $([0-9]+ '.' [0-9]* exponent?) { return ['float', parseFloat(f)]; }
-    / f: $('.' [0-9]+ exponent?)        { return ['float', parseFloat(f)]; }
-    / f: $([0-9]+ exponent)             { return ['float', parseFloat(f)]; }
+    = f: $('-'? [0-9]+ '.' [0-9]* exponent?) { return ['float', parseFloat(f)]; }
+    / f: $('-'? '.' [0-9]+ exponent?)        { return ['float', parseFloat(f)]; }
+    / f: $('-'? [0-9]+ exponent)             { return ['float', parseFloat(f)]; }
 
 exponent 'exponent'
     = $([eE][+-]?[0-9]+)
 
 Integer "integer"
-    = v: $([0-9]+) { return ['integer', parseInt(v, 10) ]; }
+    = v: $('-'? [0-9]+) { return ['integer', parseInt(v, 10) ]; }
 
 String "string"
     = '"' chars:DoubleStringCharacter* '"' { return ['string', chars.join('')]; }
