@@ -2,9 +2,12 @@
 
 [![npm version](https://badge.fury.io/js/%40deloitte-digital-au%2Fhtl-parser.svg)](https://badge.fury.io/js/%40deloitte-digital-au%2Fhtl-parser) [![Build Status](https://travis-ci.org/DeloitteDigitalAPAC/htl-parser.svg?branch=master)](https://travis-ci.org/DeloitteDigitalAPAC/htl-parser)
 
-> **htl-parser** is a PEG.js grammar and parser for Adobe's HTML Template Language (HTL), formerly *Sightly*, based on version 1.3.1 of the [HTL Specification](https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/master/SPECIFICATION.md).
+> **htl-parser** is a PEG.js grammar and parser for Adobe's *HTML Template Language* (HTL).
 
 ## Installation
+
+Versions of this package mirror the [HTL Specification](https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/master/SPECIFICATION.md).
+This package matches is 1.3.1 of the specification. 
 
 ```bash
 npm install @deloitte-digital-au/htl-parser@1.3
