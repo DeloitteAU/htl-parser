@@ -1,3 +1,5 @@
+![Deloitte Digital](https://raw.githubusercontent.com/DeloitteDigitalAPAC/eslint-config-deloitte/master/dd-logo.png)
+
 # htl-parser
 
 [![npm version](https://badge.fury.io/js/%40deloitte-digital-au%2Fhtl-parser.svg)](https://badge.fury.io/js/%40deloitte-digital-au%2Fhtl-parser) [![Build Status](https://travis-ci.org/DeloitteDigitalAPAC/htl-parser.svg?branch=master)](https://travis-ci.org/DeloitteDigitalAPAC/htl-parser)
