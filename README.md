@@ -3,24 +3,14 @@
 [![npm version](https://badge.fury.io/js/htl-parser.svg)](https://badge.fury.io/js/htl-parser) [![Build Status](https://travis-ci.org/lachlanmcdonald/htl-parser.svg?branch=master)](https://travis-ci.org/lachlanmcdonald/htl-parser)
 
 > **htl-parser** is a PEG.js grammar and parser for Adobe's HTML Template Language (HTL), formerly *Sightly*, based on version 1.3.1 of the [HTL Specification](https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/master/SPECIFICATION.md).
- 
-🌱 **This is a beta release. Use at your own risk.**
 
-## Usage
-
-#### Grammar
-
-The grammar is contained in `src/htl.pegjs`
-
-#### Generating a parser
-
-This repository comes with a pre-compiled parser. However, you can re-generate the parser with:
+## Installation
 
 ```bash
-npm run generate
+npm install htl-parser@1.3
 ```
 
-The parser will be output to `dist/parser.js`.
+## Usage
 
 #### Parsing a statement
 
@@ -35,6 +25,20 @@ const tokens = HTLParser.parse('${ a || b }');
 - The parser attempts to process HTL in their corresponding JavaScript type. For example, `int` and `float` types become a Number, etc.
 - Superfluous whitespace characters are not tokenised.
 - The parser returns an AST-like result. This is not guaranteed to be a proper abstract syntax tree.
+
+#### Generating a parser
+
+This repository comes with a pre-compiled parser. However, you can re-generate the parser with:
+
+```bash
+npm run generate
+```
+
+The parser will be output to `dist/parser.js`.
+
+## Grammar
+
+The PEG.js grammar is contained in `src/htl.pegjs`
 
 ## Parsing results
 
@@ -164,13 +168,13 @@ Represents a string.
 
 Ambiguities in the specifications grammar have been resolved as below:
 
-- Added a declarative array type, as it is present throughout the documentation, but not the grammar. ([See issue #60](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/60))
+- Added a declarative array type, as it is present throughout the documentation, but not the grammar. ([see issue #60](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/60))
 - Updated the `propertyAccess` to prevent the erroneous expression `${ a."string" }` from validating. ([see issue #57](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/57))
-- Updated grammar to include missing `== != < <= > >=` operators. ([See issue #58](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/58))
-- Updated grammar to allow complex nodes in option defitions.
-- Updated grammar to allow negative `integers` and `floats`. ([See issue #44](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/44))
+- Updated grammar to include missing `== != < <= > >=` operators. ([see issue #58](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/58))
+- Updated grammar to allow complex nodes in option definitions.
+- Updated grammar to allow negative `integers` and `floats`.  ([see issue #44](https://github.com/Adobe-Marketing-Cloud/htl-spec/issues/44))
 
-## Limitations
+#### Limitations
 
 This implementation does not correctly parse concurrent `&&` or `||` without parentheses. For example:
 
@@ -204,9 +208,9 @@ npm run test
 
 **BSD 3-Clause License**
 
-> Copyright (C) 2018, Lachlan McDonald. All rights reserved.
+> Copyright (c) 2018. All rights reserved.
 > 
-> htl-parser can be downloaded from: https://github.com/lachlanmcdonald/htl-parser
+> htl-parser can be downloaded from: https://github.com/DeloitteDigitalAPAC/htl-parser
 > 
 > Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
 > 
