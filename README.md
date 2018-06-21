@@ -1,13 +1,13 @@
 # htl-parser
 
-[![npm version](https://badge.fury.io/js/htl-parser.svg)](https://badge.fury.io/js/htl-parser) [![Build Status](https://travis-ci.org/lachlanmcdonald/htl-parser.svg?branch=master)](https://travis-ci.org/lachlanmcdonald/htl-parser)
+[![npm version](https://badge.fury.io/js/htl-parser.svg)](https://badge.fury.io/js/htl-parser) [![Build Status](https://travis-ci.org/DeloitteDigitalAPAC/htl-parser.svg?branch=master)](https://travis-ci.org/DeloitteDigitalAPAC/htl-parser)
 
 > **htl-parser** is a PEG.js grammar and parser for Adobe's HTML Template Language (HTL), formerly *Sightly*, based on version 1.3.1 of the [HTL Specification](https://github.com/Adobe-Marketing-Cloud/htl-spec/blob/master/SPECIFICATION.md).
 
 ## Installation
 
 ```bash
-npm install htl-parser@1.3
+npm install @deloitte-digital-au/htl-parser@1.3
 ```
 
 ## Usage
