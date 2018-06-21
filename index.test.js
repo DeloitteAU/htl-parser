@@ -76,7 +76,7 @@ describe('Grammar', () => {
 		const peg = require('pegjs');
 
 		const grammar = fs.readFileSync(path.join('src', 'htl.pegjs'), 'utf8');
-		const parserSource = peg.generate(grammar, {
+		peg.generate(grammar, {
 			cache: false,
 			format: 'commonjs',
 			optimize: 'speed',
