@@ -1,3 +1,9 @@
+# DEPRECATED in favour of contributing to Adobe's official project instead [htlengine](https://github.com/adobe/htlengine)
+
+The core features from this project that weren't already in the official project have been merged in already.
+
+---
+
 ![Deloitte Digital](https://raw.githubusercontent.com/DeloitteDigitalAPAC/eslint-config-deloitte/master/dd-logo.png)
 
 # htl-parser
